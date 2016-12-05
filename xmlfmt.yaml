@@ -1,0 +1,27 @@
+# program name, name for the executable
+ProgramName: xmlfmt
+
+PackageName: main
+
+Name: xmlfmt
+Desc: XML Formatter
+Text: The xmlfmt will format the XML string without rewriting the document
+#NumArg: cli.AtLeast(1)
+NumOption: cli.AtLeast(1)
+
+Options:
+  - Name: Filei
+    Type: '*clix.Reader'
+    Flag: "*f,file"
+    Usage: 'The xml file to read from (or stdin)'
+
+  - Name: Prefix
+    Type: string
+    Flag: p,prefix
+    Usage: each element begins on a new line and this prefix
+
+  - Name: Indent
+    Type: string
+    Flag: i,indent
+    Usage: indent string for nested elements
+    Value: "  "
