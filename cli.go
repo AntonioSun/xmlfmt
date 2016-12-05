@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////
-// Program: xmlfmt
+// Program: xmlfmtC
 // Purpose: XML Formatter
 // Authors: Antonio Sun (c) 2016, All rights reserved
 ////////////////////////////////////////////////////////////////////////////
@@ -12,7 +12,7 @@ import (
 )
 
 ////////////////////////////////////////////////////////////////////////////
-// xmlfmt
+// xmlfmtC
 
 type rootT struct {
 	cli.Helper
@@ -22,11 +22,11 @@ type rootT struct {
 }
 
 var root = &cli.Command{
-	Name: "xmlfmt",
+	Name: "xmlfmtC",
 	Desc: "XML Formatter\nbuilt on " + buildTime,
 	Text: "The xmlfmt will format the XML string without rewriting the document",
 	Argv: func() interface{} { return new(rootT) },
-	Fn:   xmlfmt,
+	Fn:   xmlfmtC,
 
 	NumOption: cli.AtLeast(1),
 }
@@ -41,7 +41,7 @@ var root = &cli.Command{
 // 	fmt.Println("")
 // }
 
-// func xmlfmt(ctx *cli.Context) error {
+// func xmlfmtC(ctx *cli.Context) error {
 // 	ctx.JSON(ctx.RootArgv())
 // 	ctx.JSON(ctx.Argv())
 // 	fmt.Println()

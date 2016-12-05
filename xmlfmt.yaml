@@ -3,7 +3,7 @@ ProgramName: xmlfmt
 
 PackageName: main
 
-Name: xmlfmt
+Name: xmlfmtC
 Desc: XML Formatter
 Text: The xmlfmt will format the XML string without rewriting the document
 #NumArg: cli.AtLeast(1)

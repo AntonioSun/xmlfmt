@@ -11,6 +11,7 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/go-xmlfmt/xmlfmt"
 	"github.com/mkideal/cli"
 	//clix "github.com/mkideal/cli/ext"
 )
@@ -33,16 +34,17 @@ func main() {
 	fmt.Println("")
 }
 
-func xmlfmt(ctx *cli.Context) error {
-	ctx.JSON(ctx.RootArgv())
-	ctx.JSON(ctx.Argv())
-	fmt.Println()
+func xmlfmtC(ctx *cli.Context) error {
+	// ctx.JSON(ctx.RootArgv())
+	// ctx.JSON(ctx.Argv())
+	// fmt.Println()
 
 	argv := ctx.Argv().(*rootT)
 	data, err := ioutil.ReadAll(argv.Filei)
 	argv.Filei.Close()
 	abortOn("Read input", err)
-	fmt.Println(data)
+	//fmt.Println(string(data))
+	fmt.Println(xmlfmt.FormatXML(string(data), argv.Prefix, argv.Indent))
 	return nil
 }
 
