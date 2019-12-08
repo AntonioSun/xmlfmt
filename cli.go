@@ -23,7 +23,7 @@ type rootT struct {
 
 var root = &cli.Command{
 	Name: "xmlfmtC",
-	Desc: "XML Formatter\nbuilt on " + buildTime,
+	Desc: "XML Formatter\nbuilt on " + date,
 	Text: "The xmlfmt will format the XML string without rewriting the document",
 	Argv: func() interface{} { return new(rootT) },
 	Fn:   xmlfmtC,

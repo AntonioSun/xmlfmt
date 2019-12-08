@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////
 // Program: xmlfmt
 // Purpose: XML Formatter
-// Authors: Antonio Sun (c) 2016, All rights reserved
+// Authors: Antonio Sun (c) 2016-2019, All rights reserved
 ////////////////////////////////////////////////////////////////////////////
 
 package main
@@ -20,7 +20,7 @@ import (
 // Global variables definitions
 
 var progname = "xmlfmt"
-var buildTime = "2016-12-05"
+var date = "2019-12-08"
 
 var rootArgv *rootT
 
