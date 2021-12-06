@@ -1,36 +1,22 @@
-# xmlfmt
+# xmlfmt - XML formatting command line tool
 
 About XML formatting, see https://github.com/go-xmlfmt/xmlfmt.
 
-## Download binaries
+## Download/Install
 
-- The latest binary executables are available under  
-https://bintray.com/antoniosun/bin/xmlfmt, or directly under  
-https://bintray.com/version/files/antoniosun/bin/xmlfmt  
+
+### Download binaries
+
+- The latest binary executables are available right under the github release page  
+https://github.com/AntonioSun/xmlfmt/releases  
 as the result of the Continuous-Integration process.
-- I.e., they are built during every git push, automatically by [travis-ci](https://travis-ci.org/), right from the source code, truly WYSIWYG.
-- Pick & choose the binary executable that suits your OS and its architecture. E.g., for Linux, it would most probably be the `xmlfmt-linux-amd64` file. If your OS and its architecture is not available in the download list, please let me know and I'll add it.
-- You may want to rename it to a shorter name instead, e.g., `xmlfmt`, after downloading it. 
+- I.e., they are built during every git tagged push, automatically by [GitHub Actions](https://github.com/features/actions), right from the source code, truely WYSIWYG.
+- The `.deb`, `.rpm` and `.apk` packages are readily available, as well as the executables for other Linux and Windows as well.
+- Pick & choose the binary executable that suits your OS and its architecture. E.g., for Linux, it would most probably be the `xmlfmt_ver_linux_amd64.tar.gz` file.
+- Unzip it and put the executable somewhere in the PATH, after downloading it.
 
 
-## Debian package
-
-Available at https://bintray.com/antoniosun/deb/xmlfmt,  
-or directly at  https://dl.bintray.com/antoniosun/deb:
-
-```
-echo "deb [trusted=yes] https://dl.bintray.com/antoniosun/deb all main" | sudo tee /etc/apt/sources.list.d/antoniosun-debs.list
-sudo apt-get update
-
-sudo chmod 644 /etc/apt/sources.list.d/antoniosun-debs.list
-apt-cache policy xmlfmt
-
-sudo apt-get install -y xmlfmt
-```
-
-
-
-## Install Source
+### Install Source
 
 To install the source code instead:
 
