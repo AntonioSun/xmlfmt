@@ -1,4 +1,8 @@
 # program name, name for the executable
+ProgramName: pta
+Authors: Antonio Sun
+
+# program name, name for the executable
 ProgramName: xmlfmt
 
 PackageName: main
@@ -25,3 +29,8 @@ Options:
     Flag: i,indent
     Usage: indent string for nested elements
     Value: "  "
+
+  - Name: Nested
+    Type: bool
+    Flag: 'n,nested'
+    Usage: nested tags in comments
