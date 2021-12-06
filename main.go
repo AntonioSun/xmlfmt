@@ -47,7 +47,11 @@ func xmlfmtC(ctx *cli.Context) error {
 	argv.Filei.Close()
 	abortOn("Read input", err)
 	//fmt.Println(string(data))
-	fmt.Println(xmlfmt.FormatXML(string(data), argv.Prefix, argv.Indent))
+	if argv.Nested {
+		fmt.Println(xmlfmt.FormatXML(string(data), argv.Prefix, argv.Indent, true))
+	} else {
+		fmt.Println(xmlfmt.FormatXML(string(data), argv.Prefix, argv.Indent))
+	}
 	return nil
 }
 
