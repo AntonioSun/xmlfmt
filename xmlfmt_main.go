@@ -7,16 +7,18 @@ package main
 ////////////////////////////////////////////////////////////////////////////
 // Program: xmlfmt
 // Purpose: XML Formatter
-// Authors: Antonio Sun (c) 2022, All rights reserved
+// Authors: Antonio Sun (c) 2016-2022, All rights reserved
 ////////////////////////////////////////////////////////////////////////////
 
 //go:generate sh -v xmlfmt_cliGen.sh
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 
 	"github.com/go-easygen/go-flags"
+	"github.com/go-xmlfmt/xmlfmt"
 )
 
 //////////////////////////////////////////////////////////////////////////
@@ -27,7 +29,7 @@ import (
 
 var (
 	progname = "xmlfmt"
-	version  = "0.1.0"
+	version  = "1.1.1"
 	date     = "2022-02-06"
 
 	// Opts store all the configurable options
@@ -52,12 +54,12 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println()
-	//DoXmlfmt()
+	DoXmlfmt()
 }
 
 func showVersion() {
 	fmt.Fprintf(os.Stderr, "xmlfmt - XML Formatter\n")
-	fmt.Fprintf(os.Stderr, "Copyright (C) 2022, Antonio Sun\n\n")
+	fmt.Fprintf(os.Stderr, "Copyright (C) 2016-2022, Antonio Sun\n\n")
 	fmt.Fprintf(os.Stderr, "The xmlfmt will format the XML string without rewriting the document\n\nBuilt on %s\nVersion %s\n",
 		date, version)
 	os.Exit(0)
@@ -65,6 +67,25 @@ func showVersion() {
 
 // DoXmlfmt implements the business logic of command `xmlfmt`
 func DoXmlfmt() error {
+	var data []byte
+	var err error
+	if Opts.Filei == "-" {
+		data, err = ioutil.ReadAll(os.Stdin)
+	} else {
+		data, err = ioutil.ReadFile(Opts.Filei)
+	}
+	abortOn("Input", err)
+
+	fmt.Println(xmlfmt.FormatXML(string(data),
+		Opts.Prefix, Opts.Indent, Opts.Nested))
+
 	return nil
 }
 
+// abortOn will quit on anticipated errors gracefully without stack trace
+func abortOn(errCase string, e error) {
+	if e != nil {
+		fmt.Printf("[%s] %s error: %v\n", progname, errCase, e)
+		os.Exit(1)
+	}
+}
