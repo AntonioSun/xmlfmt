@@ -1,36 +1,38 @@
 # program name, name for the executable
-ProgramName: pta
-Authors: Antonio Sun
-
-# program name, name for the executable
 ProgramName: xmlfmt
+Authors: Antonio Sun
 
 PackageName: main
 
-Name: xmlfmtC
+Name: xmlfmt
 Desc: XML Formatter
 Text: The xmlfmt will format the XML string without rewriting the document
-#NumArg: cli.AtLeast(1)
-NumOption: cli.AtLeast(1)
+Verbose: true
+Version: true
 
 Options:
   - Name: Filei
-    Type: '*clix.Reader'
-    Flag: "*f,file"
-    Usage: 'The xml file to read from (or stdin)'
+    Type: string
+    Flag: f,file
+    Usage: 'The xml file to read from (or \"-\" for stdin)'
+    EnvV: true
+    Required: true
 
   - Name: Prefix
     Type: string
     Flag: p,prefix
-    Usage: each element begins on a new line and this prefix
+    Usage: Each element begins on a new line and this prefix
+    EnvV: true
 
   - Name: Indent
     Type: string
     Flag: i,indent
-    Usage: indent string for nested elements
+    Usage: Indent string for nested elements
     Value: "  "
+    EnvV: true
 
   - Name: Nested
     Type: bool
     Flag: 'n,nested'
-    Usage: nested tags in comments
+    Usage: Nested tags in comments
+    EnvV: true

@@ -1,64 +1,70 @@
-////////////////////////////////////////////////////////////////////////////
-// Program: xmlfmt
-// Purpose: XML Formatter
-// Authors: Antonio Sun (c) 2016-2021, All rights reserved
-////////////////////////////////////////////////////////////////////////////
+// xmlfmt - XML Formatter
+
+// The xmlfmt will format the XML string without rewriting the document
 
 package main
 
+////////////////////////////////////////////////////////////////////////////
+// Program: xmlfmt
+// Purpose: XML Formatter
+// Authors: Antonio Sun (c) 2022, All rights reserved
+////////////////////////////////////////////////////////////////////////////
+
+//go:generate sh -v xmlfmt_cliGen.sh
+
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 
-	"github.com/go-xmlfmt/xmlfmt"
-	"github.com/mkideal/cli"
-	//clix "github.com/mkideal/cli/ext"
+	"github.com/go-easygen/go-flags"
 )
+
+//////////////////////////////////////////////////////////////////////////
+// Constant and data type/structure definitions
 
 ////////////////////////////////////////////////////////////////////////////
 // Global variables definitions
 
 var (
 	progname = "xmlfmt"
-	version   = "1.1.0"
-	date = "2021-12-06"
+	version  = "0.1.0"
+	date     = "2022-02-06"
+
+	// Opts store all the configurable options
+	Opts OptsT
 )
 
-var rootArgv *rootT
+var parser = flags.NewParser(&Opts, flags.Default)
 
 ////////////////////////////////////////////////////////////////////////////
-// xmlfmt
+// Function definitions
 
+// Function main
 func main() {
-	if err := cli.Root(root).Run(os.Args[1:]); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+	Opts.Version = showVersion
+	Opts.Verbflg = func() {
+		Opts.Verbose++
 	}
-	fmt.Println("")
+
+	if _, err := parser.Parse(); err != nil {
+		fmt.Println()
+		parser.WriteHelp(os.Stdout)
+		os.Exit(1)
+	}
+	fmt.Println()
+	//DoXmlfmt()
 }
 
-func xmlfmtC(ctx *cli.Context) error {
-	// ctx.JSON(ctx.RootArgv())
-	// ctx.JSON(ctx.Argv())
-	// fmt.Println()
+func showVersion() {
+	fmt.Fprintf(os.Stderr, "xmlfmt - XML Formatter\n")
+	fmt.Fprintf(os.Stderr, "Copyright (C) 2022, Antonio Sun\n\n")
+	fmt.Fprintf(os.Stderr, "The xmlfmt will format the XML string without rewriting the document\n\nBuilt on %s\nVersion %s\n",
+		date, version)
+	os.Exit(0)
+}
 
-	argv := ctx.Argv().(*rootT)
-	data, err := ioutil.ReadAll(argv.Filei)
-	argv.Filei.Close()
-	abortOn("Read input", err)
-	//fmt.Println(string(data))
-	if argv.Nested {
-		fmt.Println(xmlfmt.FormatXML(string(data), argv.Prefix, argv.Indent, true))
-	} else {
-		fmt.Println(xmlfmt.FormatXML(string(data), argv.Prefix, argv.Indent))
-	}
+// DoXmlfmt implements the business logic of command `xmlfmt`
+func DoXmlfmt() error {
 	return nil
 }
 
-// abortOn will quit on anticipated errors gracefully without stack trace
-func abortOn(errCase string, e error) {
-	if e != nil {
-		fmt.Printf("[%s] %s error: %v\n", progname, errCase, e)
-		os.Exit(1)
-	}
-}
