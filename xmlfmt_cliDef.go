@@ -56,10 +56,10 @@ import (
 //  }
 //
 //  func showVersion() {
-//   	fmt.Fprintf(os.Stderr, "xmlfmt - XML Formatter\n")
+//   	fmt.Fprintf(os.Stderr, "xmlfmt - XML Formatter, version %s\n", version)
+//  	fmt.Fprintf(os.Stderr, "Built on %s\n", date)
 //   	fmt.Fprintf(os.Stderr, "Copyright (C) 2022, Antonio Sun\n\n")
-//  	fmt.Fprintf(os.Stderr, "The xmlfmt will format the XML string without rewriting the document\n\nBuilt on %s\nVersion %s\n",
-//  		date, version)
+//  	fmt.Fprintf(os.Stderr, "The xmlfmt will format the XML string without rewriting the document\n\n")
 //  	os.Exit(0)
 //  }
 // Template for main ends here
