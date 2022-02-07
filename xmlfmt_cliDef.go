@@ -30,20 +30,20 @@ import (
 //          version   = "0.1.0"
 //          date = "2022-02-07"
 
-//  	// Opts store all the configurable options
-//  	Opts OptsT
+//  	// opts store all the configurable options
+//  	opts optsT
 //  )
 //
-//  var parser = flags.NewParser(&Opts, flags.Default)
+//  var parser = flags.NewParser(&opts, flags.Default)
 
 ////////////////////////////////////////////////////////////////////////////
 // Function definitions
 
 // Function main
 //  func main() {
-//  	Opts.Version = showVersion
-//  	Opts.Verbflg = func() {
-//  		Opts.Verbose++
+//  	opts.Version = showVersion
+//  	opts.Verbflg = func() {
+//  		opts.Verbose++
 //  	}
 //
 //  	if _, err := parser.Parse(); err != nil {
@@ -71,8 +71,8 @@ import (
 
 // Template for type define starts here
 
-// The OptsT type defines all the configurable options from cli.
-type OptsT struct {
+// The optsT type defines all the configurable options from cli.
+type optsT struct {
 	Filei   string `short:"f" long:"file" env:"XMLFMT_FILEI" description:"The xml file to read from (or \"-\" for stdin)" required:"true"`
 	Prefix  string `short:"p" long:"prefix" env:"XMLFMT_PREFIX" description:"Each element begins on a new line and this prefix"`
 	Indent  string `short:"i" long:"indent" env:"XMLFMT_INDENT" description:"Indent string for nested elements" default:"  "`

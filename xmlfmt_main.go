@@ -32,20 +32,20 @@ var (
 	version  = "1.1.1"
 	date     = "2022-02-06"
 
-	// Opts store all the configurable options
-	Opts OptsT
+	// opts store all the configurable options
+	opts optsT
 )
 
-var parser = flags.NewParser(&Opts, flags.Default)
+var parser = flags.NewParser(&opts, flags.Default)
 
 ////////////////////////////////////////////////////////////////////////////
 // Function definitions
 
 // Function main
 func main() {
-	Opts.Version = showVersion
-	Opts.Verbflg = func() {
-		Opts.Verbose++
+	opts.Version = showVersion
+	opts.Verbflg = func() {
+		opts.Verbose++
 	}
 
 	if _, err := parser.Parse(); err != nil {
@@ -69,15 +69,15 @@ func showVersion() {
 func DoXmlfmt() error {
 	var data []byte
 	var err error
-	if Opts.Filei == "-" {
+	if opts.Filei == "-" {
 		data, err = ioutil.ReadAll(os.Stdin)
 	} else {
-		data, err = ioutil.ReadFile(Opts.Filei)
+		data, err = ioutil.ReadFile(opts.Filei)
 	}
 	abortOn("Input", err)
 
 	fmt.Println(xmlfmt.FormatXML(string(data),
-		Opts.Prefix, Opts.Indent, Opts.Nested))
+		opts.Prefix, opts.Indent, opts.Nested))
 
 	return nil
 }
