@@ -10,7 +10,7 @@ package main
 // Authors: Antonio Sun (c) 2016-2022, All rights reserved
 ////////////////////////////////////////////////////////////////////////////
 
-//go:generate sh -v xmlfmt_cliGen.sh
+//go:generate sh xmlfmt_cliGen.sh
 
 import (
 	"fmt"
