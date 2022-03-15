@@ -22,7 +22,7 @@ jobs:
         go-version: 1.17
 
     - name: Install
-      run: go install github.com/AntonioSun/xmlfmt
+      run: go install github.com/AntonioSun/xmlfmt@latest
 
     - name: Test
       run: |
