@@ -15,7 +15,7 @@ jobs:
         name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.15
+          go-version: 1.18
 
       -
         name: Checkout
@@ -27,6 +27,7 @@ jobs:
         name: Tests
         run: |
           export GOPATH=/home/runner/go
+          export GO111MODULE=off
           mkdir -p $GOPATH/src/github.com/$GITHUB_ACTOR
           mv $GITHUB_WORKSPACE $GOPATH/src/github.com/$GITHUB_ACTOR
           ln -s $GOPATH/src/github.com/$GITHUB_REPOSITORY $GITHUB_WORKSPACE
@@ -43,3 +44,4 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GO111MODULE: off
