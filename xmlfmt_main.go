@@ -29,8 +29,8 @@ import (
 
 var (
 	progname = "xmlfmt"
-	version  = "1.1.1"
-	date     = "2022-02-06"
+	version  = "1.1.2"
+	date     = "2022-08-12"
 
 	// opts store all the configurable options
 	opts optsT
