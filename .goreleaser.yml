@@ -18,7 +18,6 @@ builds:
       - darwin
     goarch:
       - amd64
-      - arm64
 
 nfpms:
 - maintainer: Antonio Sun <asun@ats.l5.ca>
